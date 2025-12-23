@@ -43,9 +43,9 @@ public class LibraryUtil {
         Map<String, List<BookLoan>> result = file.stream()
                 .filter(line -> line != null && !line.isBlank())
                 .map(line -> {
-                    String[] parts = line.split(",");
+                    String[] parts = line.split(",", -1);
 
-                    if (parts.length != 7) {
+                    if (parts.length != 8) {
                         return new AbstractMap.SimpleEntry<String, BookLoan>("malformed", null);
                     }
                     String loanId = parts[0].trim();
@@ -89,8 +89,17 @@ public class LibraryUtil {
     // sorted alphabetically by genre
     protected static Map<String, Long> loansByGenre(final List<BookLoan> loans) {
         // Write your code here and replace the return statement
-
-        return Collections.emptyMap();
+        return loans.stream()
+                .collect(Collectors.groupingBy(
+                        BookLoan::getGenre,
+                        Collectors.counting()))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String,Long>comparingByKey())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (v1, v2) -> v1,
+                        LinkedHashMap::new));
     }
 
     // get top "n" authors by number of loans
