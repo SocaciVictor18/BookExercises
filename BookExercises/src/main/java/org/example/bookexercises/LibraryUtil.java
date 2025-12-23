@@ -105,7 +105,16 @@ public class LibraryUtil {
     // get top "n" authors by number of loans
     protected static List<String> topAuthorsByLoans(final List<BookLoan> loans, final int n) {
         // Write your code here and replace the return statement
-        return Collections.emptyList();
+        return loans.stream()
+                .collect(Collectors.groupingBy(
+                        BookLoan::getAuthor,
+                        Collectors.counting()
+                ))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String,Long>comparingByValue().reversed())
+                .limit(n)
+                .map(Map.Entry::getKey)
+                .toList();
     }
 
     // get members who borrowed books from at least K genres
