@@ -37,7 +37,7 @@ import static org.example.bookexercises.LibraryUtil.topAuthorsByLoans;
  */
 public class LibraryAnalytics {
 
-    protected static List<String> loadedFile = loadResourceFile("libraryLoans.csv");
+    protected static List<String> loadedFile = loadResourceFile("C:\\Endava\\EndevLocal\\SpringLearning\\BookExercises\\BookExercises\\src\\main\\resources\\libraryLoans.csv");
 
     /* The expected output of the main method is:
         Loaded 34 entries from the CSV file.
