@@ -68,7 +68,7 @@ public class LibraryUtil {
                         BookLoan loan = new BookLoan(
                                 loanId, memberId, loanDate, bookTitle, genre, author, daysLoaned
                         );
-                        return new AbstractMap.SimpleEntry<String, BookLoan>("valid", loan);
+                        return new AbstractMap.SimpleEntry<>("valid", loan);
                     } catch (Exception e) {
                         return new AbstractMap.SimpleEntry<String, BookLoan>("malformed", null);
                     }
@@ -94,7 +94,7 @@ public class LibraryUtil {
                         BookLoan::getGenre,
                         Collectors.counting()))
                 .entrySet().stream()
-                .sorted(Map.Entry.<String,Long>comparingByKey())
+                .sorted(Map.Entry.comparingByKey())
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
@@ -137,12 +137,15 @@ public class LibraryUtil {
     // find the first book title containing a substring (case-insensitive)
     protected static Optional<BookLoan> findFirstBookContaining(final List<BookLoan> loans, final String book) {
         // Write your code here and replace the return statement
-        return Optional.empty();
+        return loans.stream()
+                .filter(loan -> loan.getBookTitle().toLowerCase().contains(book.toLowerCase()))
+                .findFirst();
     }
 
     // checks if the book is present in the loans (case-insensitive)
     protected static Boolean isBookPresent(final List<BookLoan> loans, final String book) {
         // Write your code here and replace the return statement
-        return null;
+        return loans.stream()
+                .anyMatch(bk -> bk.getBookTitle().equalsIgnoreCase(book));
     }
 }
