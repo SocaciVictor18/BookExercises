@@ -10,4 +10,70 @@ public class BookLoan {
     private String genre;
     private String author;
     private int daysLoaned;
+
+    public BookLoan(String loanId, String memberId, LocalDate loanDate, String bookTitle, String genre, String author, int daysLoaned) {
+        this.loanId = loanId;
+        this.memberId = memberId;
+        this.loanDate = loanDate;
+        this.bookTitle = bookTitle;
+        this.genre = genre;
+        this.author = author;
+        this.daysLoaned = daysLoaned;
+    }
+
+    public String getLoanId() {
+        return loanId;
+    }
+
+    public void setLoanId(String loanId) {
+        this.loanId = loanId;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public LocalDate getLoanDate() {
+        return loanDate;
+    }
+
+    public void setLoanDate(LocalDate loanDate) {
+        this.loanDate = loanDate;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public int getDaysLoaned() {
+        return daysLoaned;
+    }
+
+    public void setDaysLoaned(int daysLoaned) {
+        this.daysLoaned = daysLoaned;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }
